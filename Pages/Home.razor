@@ -74,7 +74,7 @@
 
     List<Alumno> alumnos;
     List<Taller> talleres;
-    List<Inscripcion> inscripciones = new List<Inscripcion>();
+    List<Inscripcion> inscripciones = new List<Inscripcion>(); 
 
 
     string codigoTaller;
@@ -85,11 +85,15 @@
     {
         alumnos = await Http.GetFromJsonAsync<List<Alumno>>("sample-data/alumnos.json");
 
-        talleres = await Http.GetFromJsonAsync<List<Taller>>("sample-data/talleres.json");
-
-        // inscripciones = await localStorage.GetItemAsync<List<Inscripcion>>("inscripciones");
+        talleres = await Http.GetFromJsonAsync<List<Taller>>("sample-data/talleres.json");        
 
         inscripciones = await localStorage.GetItemAsync<List<Inscripcion>>("inscripciones");
+
+        if (inscripciones == null)
+        {
+            inscripciones = new List<Inscripcion>();    
+        }
+
 
     }
 
